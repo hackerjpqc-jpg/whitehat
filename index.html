@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>JP Laflamme | WhiteHat</title>
+<title>JP Laflamme | WhiteHat Elite</title>
 
 <style>
 body {
@@ -12,23 +12,19 @@ body {
     margin: 0;
 }
 
-/* Terminal effect */
-.terminal {
+/* typing effect */
+#terminal {
     padding: 20px;
-    white-space: pre-line;
+    border-bottom: 1px solid #111;
 }
 
-.glow {
-    text-shadow: 0 0 5px #00ffcc;
-}
-
-/* Sections */
+/* sections */
 section {
     padding: 40px;
     border-top: 1px solid #111;
 }
 
-/* Cards */
+/* cards */
 .card {
     border: 1px solid #00ffcc;
     padding: 15px;
@@ -38,109 +34,135 @@ section {
 
 .card:hover {
     background: #001f1f;
-    transform: scale(1.02);
 }
 
-/* Button */
+/* button */
 .button {
     display: inline-block;
     padding: 10px 20px;
     border: 1px solid #00ffcc;
     color: #00ffcc;
     text-decoration: none;
-    margin-top: 10px;
 }
 
-.button:hover {
-    background: #00ffcc;
-    color: black;
+/* badge */
+.badge {
+    display: inline-block;
+    border: 1px solid #00ffcc;
+    padding: 5px 10px;
+    margin: 5px;
 }
 
-/* Animation */
-.fade {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* counter */
+.counter {
+    font-size: 30px;
+    color: #00ffcc;
 }
 </style>
 </head>
 
 <body>
 
-<div class="terminal glow">
-> Initializing WhiteHat Profile...
-> Loading skills...
-> Access granted.
-</div>
+<div id="terminal"></div>
 
-<section class="fade">
-<h1 class="glow">JP Laflamme</h1>
+<section>
+<h1>JP Laflamme</h1>
 <p>WhiteHat Hacker | Pentesting | Bug Bounty</p>
-<p>I identify vulnerabilities, exploit weaknesses, and contribute to securing digital systems.</p>
 </section>
 
-<section class="fade">
+<section>
 <h2>🧠 Skills</h2>
-<div class="card">
-Recon → Nmap / Amass
-</div>
-<div class="card">
-Web Testing → Burp Suite
-</div>
-<div class="card">
-Exploitation → Metasploit
-</div>
+<div class="card">Recon → Nmap / Amass</div>
+<div class="card">Web → Burp Suite</div>
+<div class="card">Exploitation → Metasploit</div>
 </section>
 
-<section class="fade">
-<h2>🧪 Projects</h2>
+<section>
+<h2>📊 Stats</h2>
+<div class="counter" id="vulnCount">0</div>
+<p>Vulnerabilities Tested</p>
+</section>
 
+<section>
+<h2>🧪 Projects</h2>
 <div class="card">
 <h3>Web Pentest Lab</h3>
-<p>Discovered XSS and tested multiple vulnerabilities using manual techniques.</p>
+<p>XSS, SQLi testing and manual exploitation.</p>
 </div>
 
 <div class="card">
 <h3>Password Attack Lab</h3>
-<p>Simulated brute-force attacks and analyzed authentication flaws.</p>
-</div>
-
-</section>
-
-<section class="fade">
-<h2>📄 Security Reports</h2>
-
-<div class="card">
-SQL Injection (Lab Demonstration)
-</div>
-
-<div class="card">
-Authentication Bypass Testing
-</div>
-
-</section>
-
-<section class="fade">
-<h2>🎯 Objectives</h2>
-<div class="card">
-Join Bug Bounty Programs (HackerOne / Meta)
-</div>
-<div class="card">
-Develop advanced pentesting labs
+<p>Brute-force simulation and auth analysis.</p>
 </div>
 </section>
 
-<section class="fade">
+<section>
+<h2>📄 Real Report</h2>
+<div class="card">
+<h3>SQL Injection (Lab)</h3>
+<p>Parameter vulnerable to injection leading to data exposure.</p>
+</div>
+
+<div class="card">
+<h3>XSS (Lab)</h3>
+<p>Reflected XSS allowing script execution.</p>
+</div>
+</section>
+
+<section>
+<h2>📸 Proof (Screenshots)</h2>
+<div class="card">[Add your lab screenshots here]</div>
+</section>
+
+<section>
+<h2>🏆 Platforms</h2>
+<span class="badge">TryHackMe (in progress)</span>
+<span class="badge">HackTheBox (starting)</span>
+<span class="badge">Bug Bounty Ready</span>
+</section>
+
+<section>
 <h2>📫 Contact</h2>
-<a class="button" href="https://github.com/hackerjpqc-jpg" target="_blank">GitHub Profile</a>
+<a class="button" href="https://github.com/hackerjpqc-jpg" target="_blank">GitHub</a>
 </section>
+
+<script>
+// typing effect
+const text = [
+"> Initializing WhiteHat...",
+"> Loading exploits...",
+"> Access granted."
+];
+
+let i = 0;
+let j = 0;
+
+function type() {
+    if (i < text.length) {
+        if (j < text[i].length) {
+            document.getElementById("terminal").innerHTML += text[i].charAt(j);
+            j++;
+            setTimeout(type, 30);
+        } else {
+            document.getElementById("terminal").innerHTML += "<br>";
+            i++;
+            j = 0;
+            setTimeout(type, 300);
+        }
+    }
+}
+type();
+
+// counter animation
+let count = 0;
+let target = 25;
+
+let interval = setInterval(() => {
+    count++;
+    document.getElementById("vulnCount").innerText = count;
+    if (count >= target) clearInterval(interval);
+}, 50);
+</script>
 
 </body>
 </html>
